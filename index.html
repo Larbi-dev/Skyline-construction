@@ -31,8 +31,10 @@
     <section class="hero" style="background-image: url('images/house.jpg'); background-size: cover; background-position: center;">
       <div class="container hero-inner">
         <div class="hero-copy reveal">
+          <div class="text_surface">
           <h1>We build<strong> homes</strong> and communities</h1>
           <p>Skyline Construction Company — Suhum. Residential, schools, plumbing, electricals and full project delivery with safety and integrity.</p>
+          </div>
           <div class="hero-actions">
             <a href="#projects" class="btn">View Projects</a>
             <a href="#contact" class="btn btn-outline">Request a Quote</a>
@@ -42,18 +44,7 @@
             <span>Call us: <a href="tel:0594754314">0594754314</a></span>
           </div>
         </div>
-
-        <div class="hero-media reveal">
-          <div class="media-card">
-            <div class="mc-image" aria-hidden="true" style="background: url('images/house_2.jpg') center/cover no-repeat;"></div>
-            <div class="mc-body">
-              <h3>Featured — Suhum Primary School</h3>
-              <p>Completed: 2024 — classrooms, sanitation block & solar lighting.</p>
-            </div>
-          </div>
-        </div>
       </div>
-
       <div class="hero-decor" aria-hidden="true"></div>
     </section>
 
@@ -96,49 +87,48 @@
           <figure class="project-card reveal">
             <div class="proj-image" style="background-image: url('images/house_1.png'); background-size: cover; background-position: center;"></div>
             <figcaption>
-              <h4>Suhum Primary School</h4>
-              <p>Classrooms, latrines & solar lighting.</p>
+              <h4>Suhum Residential Duplex</h4>
+              <p>Two-storey modern family home with detailed interior finishing.</p>
             </figcaption>
           </figure>
 
           <figure class="project-card reveal">
             <div class="proj-image" style="background-image: url('images/house_2.jpg'); background-size: cover; background-position: center;"></div>
             <figcaption>
-              <h4>Riverside Residence</h4>
-              <p>5-unit housing block — modern finishes.</p>
+              <h4>Riverside Villa</h4>
+              <p>Luxury villa with balcony glass panels and spacious compound.</p>
             </figcaption>
           </figure>
 
           <figure class="project-card reveal">
             <div class="proj-image" style="background-image: url('images/house_3.jpg'); background-size: cover; background-position: center;"></div>
             <figcaption>
-              <h4>Town Clinic Renovation</h4>
-              <p>Improved sanitation & electrical upgrade.</p>
+              <h4>Town Health Center</h4>
+              <p>Modernized health facility renovation — improved sanitation & wiring.</p>
             </figcaption>
           </figure>
 
-          <!-- NEW PROJECTS ADDED -->
           <figure class="project-card reveal">
             <div class="proj-image" style="background-image: url('images/house_4.jpg'); background-size: cover; background-position: center;"></div>
             <figcaption>
-              <h4>Hilltop Villa</h4>
-              <p>Luxury hillside home with panoramic views.</p>
+              <h4>Suhum Apartment Block</h4>
+              <p>3-storey apartment complex under construction — reinforced concrete frame.</p>
             </figcaption>
           </figure>
 
           <figure class="project-card reveal">
             <div class="proj-image" style="background-image: url('images/house_5.jpg'); background-size: cover; background-position: center;"></div>
             <figcaption>
-              <h4>Community Center</h4>
-              <p>Multi-purpose facility for events & gatherings.</p>
+              <h4>Adarkwa Family Residence</h4>
+              <p>Completed two-level home — tiled compound & gated fencing.</p>
             </figcaption>
           </figure>
 
           <figure class="project-card reveal">
             <div class="proj-image" style="background-image: url('images/house_6.jpg'); background-size: cover; background-position: center;"></div>
             <figcaption>
-              <h4>Sunset Apartments</h4>
-              <p>Modern apartment complex with green spaces.</p>
+              <h4>Community Housing Project</h4>
+              <p>Multi-unit building under construction — part of local housing scheme.</p>
             </figcaption>
           </figure>
         </div>
@@ -185,17 +175,36 @@
     <section id="contact" class="contact container">
       <h2 class="section-title reveal">Get a Quote</h2>
       <div class="contact-grid">
-        <form class="contact-form reveal" id="contactForm">
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" required placeholder="Your full name">
-          </label>
+        <div class="contact-form reveal">
+          <iframe src="https://forms.gle/JvuxfsD7FNXxJz5J6" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">
+            Loading…
+          </iframe>
+        </div>
 
-          <label>
-            <span>Phone</span>
-            <input type="tel" name="phone" required placeholder="0594754314" value="0594754314">
-          </label>
+        <div class="contact-info reveal">
+          <h3>Contact Info</h3>
+          <p><strong>Skyline Construction Company</strong><br/>
+            Suhum, Eastern Region, Ghana</p>
+          <p>Phone: <a href="tel:0594754314">0594754314</a><br/>
+            Email: <a href="mailto:larbiankrahmichael@gmail.com">larbiankrahmichael@gmail.com</a></p>
 
-          <label>
-            <span>Project Brief</span>
-            <textarea name="message" rows="4" placeholder="Tell us about th
+          <div class="map-placeholder" aria-hidden="true">Map placeholder (add embed later)</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Skyline Construction Company — Suhum</p>
+      <nav class="footer-nav">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
