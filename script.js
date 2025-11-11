@@ -1,40 +1,26 @@
-// script.js - small interactions: mobile nav, reveal on scroll, counters, contact form demo
+// script.js — interactions: mobile nav, reveal animations, counters, form
 document.addEventListener('DOMContentLoaded', function () {
+  // YEAR AUTO UPDATE
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // YEAR
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // MOBILE NAV TOGGLE
+  // MOBILE NAV
   const nav = document.getElementById('nav');
   const navToggle = document.getElementById('navToggle');
-  navToggle.addEventListener('click', () => {
-    nav.classList.toggle('open');
-    // animate hamburger
-    navToggle.querySelector('.hamburger').style.transform = nav.classList.contains('open') ? 'rotate(90deg)' : 'none';
-  });
-
-  // REVEAL ON SCROLL (IntersectionObserver)
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // if it's a stat number, start counting
-        const numEl = entry.target.querySelector('.num');
-        if (numEl && !numEl.dataset.done) {
-          animateCount(numEl, parseInt(numEl.dataset.target || '0', 10), 1200);
-          numEl.dataset.done = 'true';
-        }
-      }
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      navToggle.querySelector('.hamburger').style.transform =
+        nav.classList.contains('open') ? 'rotate(90deg)' : 'none';
+      nav.style.display = nav.classList.contains('open') ? 'flex' : '';
     });
-  }, {threshold: 0.15});
+  }
 
-  reveals.forEach(r => io.observe(r));
-
-  // COUNTER function
+  // COUNTER ANIMATION FUNCTION
   function animateCount(el, target, duration) {
     const start = 0;
     const startTime = performance.now();
+
     function step(now) {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
@@ -42,34 +28,59 @@ document.addEventListener('DOMContentLoaded', function () {
       if (progress < 1) requestAnimationFrame(step);
       else el.textContent = target;
     }
+
     requestAnimationFrame(step);
   }
 
-  // CONTACT FORM (simple demo — replace with real backend)
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const name = form.name.value.trim() || 'Client';
-    const phone = form.phone.value.trim() || 'N/A';
-    // small success micro-interaction
-    const btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.textContent = 'Send Request';
-      form.reset();
-      alert(`Thanks ${name}! Your request has been received. We will contact you at ${phone}.`);
-    }, 900);
-  });
+  // REVEAL SECTIONS + TRIGGER COUNTERS
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          const nums = entry.target.querySelectorAll('.num');
+          nums.forEach(num => {
+            if (!num.dataset.done) {
+              const target = parseInt(num.dataset.target || '0', 10);
+              if (!isNaN(target)) {
+                animateCount(num, target, 1500);
+                num.dataset.done = 'true';
+              }
+            }
+          });
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  reveals.forEach(r => observer.observe(r));
 
-  // Simple progressive enhancement: click on project cards to show a quick preview
+  // CONTACT FORM
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = form.name.value.trim() || 'Client';
+      const phone = form.phone.value.trim() || 'N/A';
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Send Request';
+        form.reset();
+        alert(`Thanks ${name}! We’ll contact you at ${phone}.`);
+      }, 1000);
+    });
+  }
+
+  // PROJECT CARD CLICK (for demo)
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => {
-      const title = card.querySelector('h4') ? card.querySelector('h4').textContent : 'Project';
-      alert(`${title}\n\nFor more images and details, contact: 0594754314`);
+      const caption = card.querySelector('figcaption').textContent;
+      alert(`${caption}\n\nFor more details, call 0594754314.`);
     });
     card.style.cursor = 'pointer';
   });
-
 });
